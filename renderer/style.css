@@ -1,0 +1,237 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #1a1a2e;
+  --surface: #16213e;
+  --primary: #e94560;
+  --primary-hover: #ff6b81;
+  --text: #eee;
+  --text-muted: #888;
+  --ring-bg: #2a2a4a;
+  --focus: #e94560;
+  --short-break: #4ecca3;
+  --long-break: #3498db;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+
+.app {
+  width: 100%;
+  max-width: 380px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+/* Mode Switcher */
+.mode-switcher {
+  display: flex;
+  background: var(--surface);
+  border-radius: 30px;
+  padding: 4px;
+  gap: 2px;
+  -webkit-app-region: no-drag;
+}
+
+.mode-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 26px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.mode-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.mode-btn.active[data-mode="shortBreak"] {
+  background: var(--short-break);
+}
+
+.mode-btn.active[data-mode="longBreak"] {
+  background: var(--long-break);
+}
+
+/* Timer Ring */
+.timer-ring {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  -webkit-app-region: no-drag;
+}
+
+.timer-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: var(--ring-bg);
+  stroke-width: 6;
+}
+
+.ring-progress {
+  fill: none;
+  stroke: var(--focus);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 552.92;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear, stroke 0.3s;
+}
+
+.mode-shortBreak .ring-progress {
+  stroke: var(--short-break);
+}
+
+.mode-longBreak .ring-progress {
+  stroke: var(--long-break);
+}
+
+.timer-display {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.time {
+  font-size: 52px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 16px;
+  -webkit-app-region: no-drag;
+}
+
+.ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ctrl-btn.primary {
+  background: var(--primary);
+  color: #fff;
+}
+.ctrl-btn.primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.ctrl-btn.danger {
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid #333;
+}
+.ctrl-btn.danger:hover {
+  background: #2a2a4a;
+  color: var(--text);
+}
+
+.ctrl-btn:active {
+  transform: scale(0.96);
+}
+
+/* Task Input */
+.task-input {
+  width: 100%;
+  -webkit-app-region: no-drag;
+}
+
+.task-input input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.task-input input:focus {
+  border-color: var(--primary);
+}
+
+.task-input input::placeholder {
+  color: #555;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-num {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
