@@ -206,6 +206,16 @@ function reset() {
 btnStart.addEventListener('click', start);
 btnReset.addEventListener('click', reset);
 
+// Window controls
+const btnMin = document.getElementById('btnMin');
+const btnClose = document.getElementById('btnClose');
+btnMin.addEventListener('click', () => {
+  if (window.electronAPI) window.electronAPI.minimizeWindow();
+});
+btnClose.addEventListener('click', () => {
+  if (window.electronAPI) window.electronAPI.hideWindow();
+});
+
 modeButtons.forEach((btn) => {
   btn.addEventListener('click', () => switchMode(btn.dataset.mode));
 });

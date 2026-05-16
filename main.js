@@ -54,11 +54,10 @@ function createWindow() {
  * 创建系统托盘
  */
 function createTray() {
-  // 创建空图标（仅显示文字）
-  const icon = nativeImage.createEmpty();
+  // 使用生成的番茄图标
+  const iconPath = path.join(__dirname, 'icon.png');
+  const icon = nativeImage.createFromPath(iconPath);
   tray = new Tray(icon);
-  // 设置托盘显示文字为番茄 emoji
-  tray.setTitle('🍅');
 
   // 右键菜单
   const contextMenu = Menu.buildFromTemplate([
@@ -97,6 +96,16 @@ ipcMain.on('show-notification', (_event, { title, body }) => {
   if (Notification.isSupported()) {
     new Notification({ title, body }).show();
   }
+});
+
+// 窗口控制：最小化
+ipcMain.on('minimize-window', () => {
+  if (win) win.minimize();
+});
+
+// 窗口控制：关闭（隐藏到托盘）
+ipcMain.on('hide-window', () => {
+  if (win) win.hide();
 });
 
 // 所有窗口关闭时：macOS 下保持运行（符合平台惯例），其他平台退出

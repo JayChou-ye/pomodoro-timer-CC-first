@@ -40,11 +40,48 @@ body {
   gap: 20px;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 header h1 {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--text);
+}
+
+.win-controls {
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.win-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.win-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.win-close:hover {
+  background: var(--primary);
+  color: #fff;
 }
 
 /* Mode Switcher */
